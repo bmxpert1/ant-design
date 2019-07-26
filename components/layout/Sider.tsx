@@ -56,6 +56,7 @@ export interface SiderProps extends React.HTMLAttributes<HTMLDivElement> {
   breakpoint?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
   theme?: SiderTheme;
   onBreakpoint?: (broken: boolean) => void;
+  specialTriggerIcon?: string;
 }
 
 type InternalSideProps = SiderProps & LayoutContextProps;
@@ -83,6 +84,7 @@ class InternalSider extends React.Component<InternalSideProps, SiderState> {
     collapsedWidth: 80,
     style: {},
     theme: 'dark' as SiderTheme,
+    specialTriggerIcon: 'bars',
   };
 
   static getDerivedStateFromProps(nextProps: InternalSideProps) {
@@ -183,6 +185,7 @@ class InternalSider extends React.Component<InternalSideProps, SiderState> {
       style,
       width,
       collapsedWidth,
+      specialTriggerIcon,
       ...others
     } = this.props;
     const prefixCls = getPrefixCls('layout-sider', customizePrefixCls);
@@ -206,7 +209,7 @@ class InternalSider extends React.Component<InternalSideProps, SiderState> {
             reverseArrow ? 'right' : 'left'
           }`}
         >
-          <Icon type="bars" />
+          <Icon type={specialTriggerIcon} />
         </span>
       ) : null;
     const iconObj = {
