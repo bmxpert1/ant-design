@@ -164,6 +164,7 @@ export interface TreeProps {
   children?: React.ReactNode;
   blockNode?: boolean;
   treeData?: Array<TreeNodeNormal>;
+  leafIcon?: string;
 }
 
 export default class Tree extends React.Component<TreeProps, any> {
@@ -178,6 +179,7 @@ export default class Tree extends React.Component<TreeProps, any> {
       motionAppear: false,
     },
     blockNode: false,
+    leafIcon: 'file',
   };
 
   tree: any;
@@ -187,13 +189,13 @@ export default class Tree extends React.Component<TreeProps, any> {
     switcherIcon: React.ReactElement<any> | undefined,
     { isLeaf, expanded, loading }: AntTreeNodeProps,
   ) => {
-    const { showLine } = this.props;
+    const { showLine, leafIcon } = this.props;
     if (loading) {
       return <Icon type="loading" className={`${prefixCls}-switcher-loading-icon`} />;
     }
     if (showLine) {
       if (isLeaf) {
-        return <Icon type="file" className={`${prefixCls}-switcher-line-icon`} />;
+        return <Icon type={leafIcon} className={`${prefixCls}-switcher-line-icon`} />;
       }
       return (
         <Icon
