@@ -74,6 +74,8 @@
     overflow: hidden;
     font-size: @font-size-sm;
     line-height: 22px;
+    background-color: transparent;
+    border: none;
     cursor: pointer;
 
     .@{iconfont-css-prefix}-close {
@@ -86,8 +88,11 @@
   }
 
   &-close-text {
-    position: absolute;
-    right: 16px;
+    color: @alert-close-color;
+    transition: color 0.3s;
+    &:hover {
+      color: @alert-close-hover-color;
+    }
   }
 
   &-with-description {
